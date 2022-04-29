@@ -20,6 +20,7 @@ whereas, in a big-endian manner it would be stored as:
 
 ## Usage Instructions
 Download the file <code> readbits.hpp </code> and move it into the same directory as your code.
+
 Then include the file in your C++ code (<code> #include "readbits.hpp" </code>) and call either <code>littleendian</code> or <code>bigendian</code> with your variable/literal as a parameter.
 
 
