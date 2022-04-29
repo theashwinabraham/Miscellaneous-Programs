@@ -19,8 +19,8 @@ whereas, in a big-endian manner it would be stored as:
 > 00000000000000000000000000000011
 
 ## Usage Instructions
-Download the file <code> readbits.hpp </code> and move it into the same directory as your code, and then include the file in your C++ code
-(<code> #include "readbits.hpp" </code>). Then call either <code>littleendian</code> or <code>bigendian</code> with your variable/literal as a parameter.
+Download the file <code> readbits.hpp </code> and move it into the same directory as your code.
+Then include the file in your C++ code (<code> #include "readbits.hpp" </code>) and call either <code>littleendian</code> or <code>bigendian</code> with your variable/literal as a parameter.
 
 
 These functions return vectors containing 0s and 1s. The first entry of <code>littleendian</code> would be the least significant bit and the first entry of <code>bigendian</code> would be the most significant bit.
