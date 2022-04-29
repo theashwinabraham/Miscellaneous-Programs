@@ -14,6 +14,7 @@ stored first in memory, whereas in big-endian storage it is stored last. Note th
 
 For example, the 32 bit unsigned integer 3, would be stored in a little-endian manner as:
 > 11000000000000000000000000000000
+
 whereas, in a big-endian manner it would be stored as:
 > 00000000000000000000000000000011
 
