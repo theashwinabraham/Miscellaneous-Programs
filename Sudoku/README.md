@@ -13,6 +13,7 @@ For example,
 ![image description](sudoku.png)
 this puzzle should be inputted as:
 
+<code>
 5 3 0 0 7 0 0 0 0\
 6 0 0 1 9 5 0 0 0\
 0 9 8 0 0 0 0 6 0\
@@ -22,11 +23,13 @@ this puzzle should be inputted as:
 0 6 0 0 0 0 2 8 0\
 0 0 0 4 1 9 0 0 5\
 0 0 0 0 8 0 0 7 9
+</code>
 
 The program will then print the solved sudoku in a similiar form.
 
 In this case, it will print:
 
+<code>
 5 3 4 6 7 8 9 1 2\
 6 7 2 1 9 5 3 4 8\
 1 9 8 3 4 2 5 6 7\
@@ -36,3 +39,4 @@ In this case, it will print:
 9 6 1 5 3 7 2 8 4\
 2 8 7 4 1 9 6 3 5\
 3 4 5 2 8 6 1 7 9
+</code>
