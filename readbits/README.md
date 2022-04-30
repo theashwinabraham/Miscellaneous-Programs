@@ -19,15 +19,15 @@ whereas, in a big-endian manner it would be stored as:
 > 00000000000000000000000000000011
 
 ## Usage Instructions
-Download the file <code> readbits.hpp </code> and move it into the same directory as your code.
+Download the file ```readbits.hpp``` and move it into the same directory as your code.
 
-Then include the file in your C++ code (<code> #include "readbits.hpp" </code>) and call either <code>littleendian</code> or <code>bigendian</code> with your variable/literal as a parameter.
-
-
-These functions return vectors containing 0s and 1s. The first entry of <code>littleendian</code> would be the least significant bit and the first entry of <code>bigendian</code> would be the most significant bit.
+Then include the file in your C++ code (```#include "readbits.hpp"```) and call either ```littleendian``` or ```bigendian``` with your variable/literal as a parameter.
 
 
-Since littleendian and bigendian are template functions, you can explicitly specify the type of the parameter while calling it (otherwise it would be implicitly deduced by the compiler). (For example, <code>littleendian(3)</code> would return the representation of 3 as an integer, whereas <code>littleendian\<double\>(3)</code> would return the representation of 3 as a double).
+These functions return vectors containing 0s and 1s. The first entry of ```littleendian``` would be the least significant bit and the first entry of ```bigendian``` would be the most significant bit.
+
+
+Since littleendian and bigendian are template functions, you can explicitly specify the type of the parameter while calling it (otherwise it would be implicitly deduced by the compiler). (For example, ```littleendian(3)``` would return the representation of 3 as an integer, whereas ```littleendian\<double\>(3)``` would return the representation of 3 as a double).
 
 Note that if the object contains pointers as members then the these functions only give the representation of the pointer in memory, not the 
 representation of the pointed to memory.
