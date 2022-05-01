@@ -27,7 +27,7 @@ Then include the file in your C++ code (```#include "readbits.hpp"```) and call 
 These functions return vectors containing 0s and 1s. The first entry of ```littleendian``` would be the least significant bit and the first entry of ```bigendian``` would be the most significant bit.
 
 
-Since littleendian and bigendian are template functions, you can explicitly specify the type of the parameter while calling it (otherwise it would be implicitly deduced by the compiler). (For example, ```littleendian(3)``` would return the representation of 3 as an integer, whereas ```littleendian\<double\>(3)``` would return the representation of 3 as a double).
+Since littleendian and bigendian are template functions, you can explicitly specify the type of the parameter while calling it (otherwise it would be implicitly deduced by the compiler). (For example, ```littleendian(3)``` would return the representation of 3 as an integer, whereas ```littleendian<double>(3)``` would return the representation of 3 as a double).
 
 Note that if the object contains pointers as members then the these functions only give the representation of the pointer in memory, not the 
 representation of the pointed to memory.
