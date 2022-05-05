@@ -20,5 +20,5 @@ A game of Snake was made using C++ and the graphics library FLTK.
 2. Run ```fltk-config --compile snake.cpp && ./snake```
 
 ## Some Images from the Game
-[Image Description](snake_screenshot1.jpg)
-[Image Description](snake_screenshot2.jpg)
+![Image Description](snake_screenshot1.jpg)
+![Image Description](snake_screenshot2.jpg)
