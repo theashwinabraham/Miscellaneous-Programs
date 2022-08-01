@@ -33,7 +33,7 @@ namespace readbits{
         for(int i = 8*sizeof(T)-1; i>=0; --i) bits.push_back((ptra[i/usize]>>(i%usize))&1);
         return bits;
     }
-};
+}
 
 #undef usize
 #endif
