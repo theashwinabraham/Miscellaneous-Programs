@@ -12,31 +12,38 @@ All the assembly code here was written for x86 64 bit systems running Linux.
 The assembly code has been written in the Intel Syntax and is to be assembled with the [Netwide Assembler](https://www.nasm.us/) (NASM).
 
 To get NASM in Linux, just enter:
+
     sudo apt install nasm
 in the terminal
 
 To assemble an x86 assembly file (named ```file.asm```, for example) in 64 bit mode, execute:
+
     nasm -f elf64 -g file.asm,
 
 This will output an object file called ```file.o``` by default.
 
 If ```file.asm``` called C library functions (such as ```main```, ```printf```, ```scanf```, etc), to create the executable we must compile and link 
-the object file using a C compiler such as GCC.
+the object file using a C compiler such as GCC by running.
+
     gcc file.o
+
 Some errors may be rectified by using the ```-no-pie``` option
+
     gcc -no-pie file.o
 
 ```Tib.asm``` and ```clib.asm``` are to be compiled this way.
 
 
 If the function instead relies solely on standard CPU instructions and System Calls, such as the ```read``` and ```write``` syscalls, then we can use the linker directly instead of GCC.
+
     ld -g file.o
 
 ```standalone.asm``` is to be compiled this way.
 
 If ```file.asm``` just defines functions to be linked in a C/C++ file, we can use GCC again
+
     gcc file.o other_file.c
 
-```func.asm``` is to be linked with ```linkasm.c``` in this way
+```func.asm``` can be linked with ```linkasm.c``` in this way
 
 In all of these examples, unless otherwise specidied ```a.out``` is the standard executable file.
