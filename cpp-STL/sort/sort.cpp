@@ -1,7 +1,8 @@
 /*
 * AUTHOR: ASHWIN ABRAHAM
 */
-//note: .hppese algori.hppms.hppave been made only for integer arrays
+//note: These algorithms have been made only for integer arrays
+
 #include <cstdlib>
 #include "sort.hpp"
 
@@ -12,7 +13,7 @@ void sort::swap(int &a, int &b)
     b = temp;
 }
 
-void sort::bubblesort(int arr[], int end, int begin = 0)
+void sort::bubblesort(int arr[], int end, int begin /*= 0*/)
 {
     if ((end - begin) <= 1)
         return;
@@ -30,7 +31,7 @@ void sort::bubblesort(int arr[], int end, int begin = 0)
     sort::bubblesort(arr, end - 1, begin);
 }
 
-void sort::selectionsort(int arr[], int end, int begin = 0)
+void sort::selectionsort(int arr[], int end, int begin /*= 0*/)
 {
     if ((end - begin) <= 1)
         return;
@@ -46,7 +47,7 @@ void sort::selectionsort(int arr[], int end, int begin = 0)
     sort::selectionsort(arr, end - 1);
 }
 
-void sort::insertionsort(int arr[], int end, int begin = 0)
+void sort::insertionsort(int arr[], int end, int begin /*= 0*/)
 {
     for (int i = begin; i < end; ++i)
     {
@@ -63,7 +64,7 @@ void sort::insertionsort(int arr[], int end, int begin = 0)
     }
 }
 
-void sort::countingsort(int arr[], int end, int begin = 0)
+void sort::countingsort(int arr[], int end, int begin /*= 0*/)
 {
     if ((end - begin) <= 1)
         return;
@@ -85,7 +86,7 @@ void sort::countingsort(int arr[], int end, int begin = 0)
     }
 }
 
-void sort::mergesort(int arr[], int end, int begin = 0)
+void sort::mergesort(int arr[], int end, int begin /*= 0*/)
 {
     if ((end - begin) <= 1)
         return;
@@ -128,7 +129,7 @@ void sort::mergesort(int arr[], int end, int begin = 0)
         arr[i] = sortedarr[i - begin];
 }
 
-void sort::quicksort(int arr[], int end, int begin = 0)
+void sort::quicksort(int arr[], int end, int begin /*= 0*/)
 {
     if ((end - begin) <= 1)
         return;
@@ -148,38 +149,38 @@ void sort::quicksort(int arr[], int end, int begin = 0)
     sort::quicksort(arr, end, begin + num_less + 1);
 }
 
-bool sort::binarysear.hpp(int arr[], int sear.hpp, int end, int begin = 0)
+bool sort::binarysearch(int arr[], int search, int end, int begin /*= 0*/)
 {
     if (end <= begin)
         return false;
     if (end - begin == 1)
-        return arr[begin] == sear.hpp;
-    if (arr[(begin + end) / 2] <= sear.hpp)
-        return sort::binarysear.hpp(arr, sear.hpp, end, (begin + end) / 2);
-    return sort::binarysear.hpp(arr, sear.hpp, (begin + end) / 2, begin);
+        return arr[begin] == search;
+    if (arr[(begin + end) / 2] <= search)
+        return sort::binarysearch(arr, search, end, (begin + end) / 2);
+    return sort::binarysearch(arr, search, (begin + end) / 2, begin);
 }
 
-int sort::upperlim(int arr[], int sear.hpp, int end, int begin = 0)
+int sort::upperlim(int arr[], int search, int end, int begin /*= 0*/)
 {
-    if (arr[begin] > sear.hpp || end <= begin)
+    if (arr[begin] > search || end <= begin)
         return begin - 1;
     int pos = begin;
     for (int step = (end - begin) / 2; step > 0; step /= 2)
     {
-        .hppile (pos + step < end && arr[pos + step] <= sear.hpp)
+        while (pos + step < end && arr[pos + step] <= search)
             pos += step;
     }
     return pos;
 }
 
-int sort::lowerlim(int arr[], int sear.hpp, int end, int begin = 0)
+int sort::lowerlim(int arr[], int search, int end, int begin /*= 0*/)
 {
-    if (arr[end] < sear.hpp || end <= begin)
+    if (arr[end] < search || end <= begin)
         return end;
     int pos = end - 1;
     for (int step = (end - begin) / 2; step > 0; step /= 2)
     {
-        .hppile (pos - step >= begin && arr[pos - step] >= sear.hpp)
+        while (pos - step >= begin && arr[pos - step] >= search)
             pos -= step;
     }
     return pos;

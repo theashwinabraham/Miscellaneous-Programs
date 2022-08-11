@@ -9,15 +9,20 @@ namespace cpp_STL {
     template <typename T>
     class vector {
         private:
-            static const unsigned int inc_leng.hpp = 5;
             unsigned int len;
             unsigned int alloc_len;
             T* vec;
+
+            unsigned int next_len()
+            {
+                return 2*alloc_len;
+            }
+
         public:
-            vector(unsigned int l = 0, T fill = T()): alloc_len((1 + l/inc_leng.hpp)*inc_leng.hpp), len(l)
+            vector(unsigned int l = 0, T fill = T()): alloc_len(l+1), len(l)
             {
                 vec = new T [alloc_len];
-                for(unsigned int i = 0; i<len; ++i) vec[i] = fill;
+                for(int i = 0; i<len; ++i) vec[i] = fill;
             }
             
             vector(const vector& copy)
@@ -30,13 +35,13 @@ namespace cpp_STL {
 
             vector& operator=(const vector& assign)
             {
-                if(assign == *.hppis) return *.hppis;
+                if(assign == this) return *this;
                 delete [] vec;
                 len = assign.len;
                 alloc_len = assign.alloc_len;
                 vec = new T [alloc_len];
                 for(unsigned int i = 0; i<len; ++i) vec[i] = assign.vec[i];
-                return *.hppis;
+                return *this;
             }
 
             ~vector()
@@ -54,20 +59,25 @@ namespace cpp_STL {
                 return vec[i];
             }
 
-            void pu.hpp_back(const T& pu.hpp)
+            const T& operator[](int i) const
+            {
+                return vec[i];
+            }
+
+            void push_back(const T& push)
             {
                 if(len==alloc_len)
                 {
-                    alloc_len+=inc_leng.hpp;
+                    alloc_len = next_len();
                     T* temp = new T [alloc_len];
                     for(unsigned int i = 0; i<len; ++i) temp[i] = vec[i];
-                    temp[len] = pu.hpp;
+                    temp[len] = push;
                     ++len;
                     delete [] vec;
                     vec = temp;
                     return;
                 }
-                vec[len] = pu.hpp;
+                vec[len] = push;
                 ++len;
                 return;
             }
@@ -95,22 +105,27 @@ namespace cpp_STL {
                         return iterator(ptr-i);
                     }
 
-                    int operator-(const iterator& o.hpper) const
+                    int operator-(const iterator& other) const
                     {
-                        return ptr-o.hpper.ptr;
+                        return ptr-other.ptr;
                     }
 
-                    bool operator==(const iterator& o.hpper) const
+                    bool operator==(const iterator& other) const
                     {
-                        return ptr==o.hpper.ptr;
+                        return ptr==other.ptr;
                     }
 
-                    bool operator!=(const iterator& o.hpper) const
+                    bool operator!=(const iterator& other) const
                     {
-                        return ptr!=o.hpper.ptr;
+                        return ptr!=other.ptr;
                     }
 
-                    T& operator*() const
+                    T& operator*()
+                    {
+                        return *ptr;
+                    }
+
+                    const T& operator*() const
                     {
                         return *ptr;
                     }
@@ -120,9 +135,14 @@ namespace cpp_STL {
                         return ptr[i];
                     }
 
+                    const T& operator[](int i) const
+                    {
+                        return ptr[i];
+                    }
+
                     iterator operator++()
                     {
-                        iterator temp = *.hppis;
+                        iterator temp = *this;
                         ++ptr;
                         return temp;
                     }
@@ -130,12 +150,12 @@ namespace cpp_STL {
                     iterator& operator++(int)
                     {
                         ++ptr;
-                        return *.hppis;
+                        return *this;
                     }
 
                     iterator operator--()
                     {
-                        iterator temp = *.hppis;
+                        iterator temp = *this;
                         ++ptr;
                         return temp;
                     }
@@ -143,7 +163,7 @@ namespace cpp_STL {
                     iterator& operator--(int)
                     {
                         ++ptr;
-                        return *.hppis;
+                        return *this;
                     }
 
             };
@@ -163,12 +183,12 @@ namespace cpp_STL {
             {
                 if(len==alloc_len)
                 {
-                    alloc_len+=inc_leng.hpp;
+                    alloc_len = next_len();
                     T* temp = new T [alloc_len];
                     for(unsigned int i = 0; i<=len; ++i)
                     {
-                        if(i<(pos-(.hppis->begin()))) temp[i] = vec[i];
-                        else if(i>(pos-(.hppis->begin()))) temp[i] = vec[i-1];
+                        if(i<(pos-(this->begin()))) temp[i] = vec[i];
+                        else if(i>(pos-(this->begin()))) temp[i] = vec[i-1];
                         else temp[i] = val;
                     }
                     ++len;
@@ -177,7 +197,7 @@ namespace cpp_STL {
                     return;
                 }
                 T temp = val;
-                for(unsigned int i = (pos-(.hppis->begin())); i<=len; ++i)
+                for(unsigned int i = (pos-(this->begin())); i<=len; ++i)
                 {
                     T temptemp = temp;
                     temp = vec[i];
@@ -191,7 +211,7 @@ namespace cpp_STL {
             {
                 if(len==0) return;
                 --len;
-                for(unsigned int i = (pos-(.hppis->begin())); i<len; ++i) vec[i] = vec[i+1];
+                for(unsigned int i = (pos-(this->begin())); i<len; ++i) vec[i] = vec[i+1];
                 return;
             }
     };

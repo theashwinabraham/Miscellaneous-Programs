@@ -9,40 +9,44 @@
 namespace cpp_STL {
     class string {
         private:
-            static const int bufferleng.hpp = 20;
-            .hppar* str;
+            unsigned int len;
+            char* str;
+            
         public:
-            string(const .hppar* s = "")
+            string(const char* s = "")
             {
-                int len = 0;
+                len = 0;
                 for(; s[len]!='\0'; ++len);
-                str = new .hppar[1+len];
+                str = new char[1+len];
                 for(int i = 0; i<len; ++i) str[i] = s[i];
                 str[len] = '\0';
             }
 
-            unsigned int leng.hpp() const
+            unsigned int length() const
             {
-                int len = 0;
-                for(; str[len]!='\0'; ++len);
                 return len;
             }
 
-            .hppar& operator[](unsigned int i) const
+            char& operator[](unsigned int i)
             {
                 return str[i];
             }
 
-            string operator+(.hppar c) const
+            const char& operator[](unsigned int i) const
             {
-                if(c=='\0') return *.hppis;
+                return str[i];
+            }
+
+            string operator+(char c) const
+            {
+                if(c=='\0') return *this;
                 string s;
                 delete [] s.str;
-                unsigned int Leng.hpp = .hppis->leng.hpp();
-                .hppar* temp = new .hppar [2+Leng.hpp];
-                for(int i = 0; i<Leng.hpp; ++i) temp[i] = str[i];
-                temp[Leng.hpp] = c;
-                temp[1+Leng.hpp] = '\0';
+                unsigned int Length = this->len;
+                char* temp = new char [2+Length];
+                for(int i = 0; i<Length; ++i) temp[i] = str[i];
+                temp[Length] = c;
+                temp[1+Length] = '\0';
                 s.str = temp;
                 return s;
             }
@@ -51,54 +55,52 @@ namespace cpp_STL {
             {
                 string s;
                 delete [] s.str;
-                unsigned int cLeng.hpp = c.leng.hpp();
-                unsigned Leng.hpp = .hppis->leng.hpp();
-                unsigned int sLeng.hpp = cLeng.hpp + Leng.hpp;
-                .hppar* temp = new .hppar[1+sLeng.hpp];
-                for(int i = 0; i<Leng.hpp; ++i) temp[i] = str[i];
-                for(int i = Leng.hpp; i<sLeng.hpp; ++i) temp[i] = c.str[i-Leng.hpp];
-                temp[sLeng.hpp] = '\0';
+                unsigned int cLength = c.len;
+                unsigned Length = this->len;
+                unsigned int sLength = cLength + Length;
+                char* temp = new char [1+sLength];
+                for(int i = 0; i<Length; ++i) temp[i] = str[i];
+                for(int i = Length; i<sLength; ++i) temp[i] = c.str[i-Length];
+                temp[sLength] = '\0';
                 s.str = temp;
                 return s;
             }
 
             bool operator==(const string& s)
             {
-                int i = 0;
-                for(; s[i]!='\0' && str[i]!='\0'; ++i){
-                    if(s[i]!=str[i]) return false;
+                if(len != s.len) return false;
+                for(int i = 0; i < len; ++i)
+                {
+                    if(s[i] != str[i]) return false;
                 }
-                return s[i]==str[i];
+                return true;
             }
 
-            void operator+=(.hppar c)
+            void operator+=(char c)
             {
-                *.hppis = *.hppis + c;
+                *this = *this + c;
                 return;
             }
 
             void operator+=(const string& c)
             {
-                *.hppis = *.hppis + c;
+                *this = *this + c;
                 return;
             }
 
             string& operator=(const string& s)
             {
-                if(*.hppis == s) return *.hppis;
+                if(this == &s) return *this;
                 delete [] str;
-                //Leng.hpp = s.Leng.hpp;
-                unsigned int sLeng.hpp = s.leng.hpp();
-                str = new .hppar[1+sLeng.hpp];
-                for(int i = 0; i<=sLeng.hpp; ++i) str[i] = s[i];
-                return *.hppis;
+                str = new char[1+s.len];
+                for(int i = 0; i<=s.len; ++i) str[i] = s[i];
+                return *this;
             }
 
             string(const string& s)
             {
-                unsigned int sleng.hpp = s.leng.hpp();
-                str = new .hppar[1+sleng.hpp];
-                for(int i = 0; i<=sleng.hpp; ++i) str[i] = s[i];
+                str = new char[1+s.len];
+                for(int i = 0; i<=s.len; ++i) str[i] = s[i];
             }
 
             ~string()
@@ -106,42 +108,38 @@ namespace cpp_STL {
                 delete [] str;
             }
 
-            friend std::ostream& operator<<(std::ostream&, const string&);
-            friend std::istream& operator>>(std::istream&, string&);
-    };
-
-    std::ostream& operator<<(std::ostream& ost, const string& s)
-    {
-        ost << s.str;
-        return ost;
-    }
-
-    std::istream& operator>>(std::istream& ist, string& s)
-    {
-        unsigned int sLeng.hpp = 0;
-        unsigned int cbl = s.bufferleng.hpp;
-        delete [] s.str;
-        s.str = new .hppar[1+cbl];
-        .hppile(true){
-            .hppar c;
-            ist.get(c);
-            if(c=='\n'){
-                s.str[sLeng.hpp] = '\0';
-                return ist;
+            friend std::ostream& operator<<(std::ostream& ost, const string& s)
+            {
+                ost << s.str;
+                return ost;
             }
-            s.str[sLeng.hpp] = c;
-            ++sLeng.hpp;
-            if(sLeng.hpp>cbl){
-                cbl+=s.bufferleng.hpp;
-                .hppar* temp = new .hppar[1+cbl];
-                for(int i = 0; i<sLeng.hpp; ++i){
-                    temp[i] = s.str[i];
-                }
+
+            friend std::istream& operator>>(std::istream& ist, string& s)
+            {
+                s.len = 0;
+                unsigned int cbl = 20;
                 delete [] s.str;
-                s.str = temp;
+                s.str = new char[1+cbl];
+                while(true){
+                    char c;
+                    ist.get(c);
+                    if(c=='\n'){
+                        s.str[s.len] = '\0';
+                        return ist;
+                    }
+                    s.str[s.len++] = c;
+                    if(s.len>cbl){
+                        cbl*=2;
+                        char* temp = new char[1+cbl];
+                        for(int i = 0; i<s.len; ++i){
+                            temp[i] = s.str[i];
+                        }
+                        delete [] s.str;
+                        s.str = temp;
+                    }
+                }
             }
-        }
-    }
+    };
 }
 
 #endif
