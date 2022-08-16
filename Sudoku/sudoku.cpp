@@ -13,7 +13,6 @@ To enter the puzzle, enter the numbers in each row one by one from top to bottom
 #include <array>
 #include <cassert>
 
-std::array<std::array<std::set<int>, 9>, 9>* actual_arr;
 
 //Inputs puzzle
 //To enter the puzzle, enter the numbers in each row one by one and replace the unknown numbers with 0
@@ -128,10 +127,6 @@ bool first_round(std::array<std::array<std::set<int>, 9>, 9>& arr)
 //Solves the sudoku
 bool solve(std::array<std::array<std::set<int>, 9>, 9>& arr)
 {
-    static int i = 0;
-    print(*actual_arr);
-    //assert(i<30);
-    ++i;
     if(!first_round(arr)) return false;
     for(int i = 0; i<9; ++i)
     {
@@ -162,7 +157,6 @@ int main()
 {
     std::array<std::array<std::set<int>, 9>, 9> arr;
     input(arr);
-    actual_arr = &arr;
     if(solve(arr) && check(arr)) print(arr);
     else std::cout << "\nNo solutions\n";
     return 0;
