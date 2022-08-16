@@ -128,10 +128,6 @@ bool first_round(std::array<std::array<std::set<int>, 9>, 9>& arr)
 //Solves the sudoku
 bool solve(std::array<std::array<std::set<int>, 9>, 9>& arr)
 {
-    static int i = 0;
-    print(*actual_arr);
-    //assert(i<30);
-    ++i;
     if(!first_round(arr)) return false;
     for(int i = 0; i<9; ++i)
     {
@@ -162,7 +158,6 @@ int main()
 {
     std::array<std::array<std::set<int>, 9>, 9> arr;
     input(arr);
-    actual_arr = &arr;
     if(solve(arr)) print(arr);
     else std::cout << "No solutions\n";
     return 0;
