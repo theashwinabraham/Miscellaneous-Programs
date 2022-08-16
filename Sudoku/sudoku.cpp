@@ -163,7 +163,7 @@ int main()
     std::array<std::array<std::set<int>, 9>, 9> arr;
     input(arr);
     actual_arr = &arr;
-    if(solve(arr)) print(arr);
-    else std::cout << "No solutions\n";
+    if(solve(arr) && check(arr)) print(arr);
+    else std::cout << "\nNo solutions\n";
     return 0;
 }
